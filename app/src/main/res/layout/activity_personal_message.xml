@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/common_header" />
+
+    <TextView
+        android:id="@+id/modify_psd_tv"
+        style="@style/textView_item_style"
+        android:background="@color/white"
+        android:text="@string/modify_psd" />
+
+    <View style="@style/line_h" />
+
+    <RelativeLayout
+        android:id="@+id/modify_phone_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            style="@style/text_black_style"
+            android:layout_height="@dimen/y56"
+            android:layout_marginLeft="@dimen/x14"
+            android:text="@string/modify_phone" />
+
+        <TextView
+            android:id="@+id/logon_phone_tv"
+            style="@style/text_more_gray_style"
+            android:layout_height="@dimen/y56"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x14"
+            android:text="1355****326" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/exit_login_tv"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y56"
+        android:layout_marginTop="@dimen/x20"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="@string/exit_login"
+        android:textColor="#36D7CF"
+        android:textSize="@dimen/sp_16" />
+</LinearLayout>

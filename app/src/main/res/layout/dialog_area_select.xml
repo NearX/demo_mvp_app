@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_dialog_bg"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y56">
+
+        <TextView
+            android:id="@+id/change_dialog_select_tittle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:clickable="false"
+            android:singleLine="true"
+            android:text="选择区号"
+            android:textColor="@color/color_black_1"
+            android:textSize="@dimen/text_size_14" />
+
+
+        <ImageView
+            android:id="@+id/change_dialog_select_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x14"
+            android:src="@mipmap/ic_close_1" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/x14"
+        android:text="选择国家区号"
+        android:textColor="@color/color_gray_4"
+        android:textSize="@dimen/x12" />
+
+    <com.ybkj.demo.ui.view.recyclerview.XRecyclerView
+        android:id="@+id/area_select_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.ybkj.demo.ui.view.recyclerview.XRecyclerView>
+
+
+</LinearLayout>

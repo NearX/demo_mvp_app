@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 设置进度的颜色，将startColor、centerColor、endColor都设置成同一个颜色值 -->
+    <gradient
+        android:angle="0"
+        android:centerY="0.75"
+        android:endColor="@color/color_green_1"
+        android:startColor="@color/color_green_2" />
+</shape>

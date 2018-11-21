@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/version_update" />
+
+    <TextView
+        android:id="@+id/update_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/x16"
+        android:paddingTop="@dimen/y30"
+        android:textColor="@color/color_black_1"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/update_cotent_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingLeft="@dimen/x16"
+        android:paddingRight="@dimen/x16"
+        android:paddingTop="@dimen/y19"
+        android:textColor="@color/color_black_1"
+        android:textSize="@dimen/text_size_14" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_update_app_dialog_bg">
+
+        <ProgressBar
+            android:id="@+id/update_prg_bar"
+            style="@style/progressBarHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/y26"
+            android:layout_marginEnd="@dimen/x15"
+            android:layout_marginStart="@dimen/x15"
+            android:layout_marginTop="@dimen/y26"
+            android:max="100"
+            android:maxHeight="@dimen/y3"
+            android:minHeight="@dimen/y3"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/update_app_bottom_ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/update_now_tv"
+                style="@style/btn_green"
+                android:layout_marginBottom="@dimen/y16"
+                android:layout_marginTop="@dimen/y20"
+                android:background="@drawable/shape_button_bg"
+                android:gravity="center"
+                android:text="@string/update_now"
+                android:textSize="@dimen/text_size_14" />
+        </LinearLayout>
+    </FrameLayout>
+
+
+    <ImageView
+        android:id="@+id/update_later_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:src="@mipmap/ic_update_cancel"
+        android:visibility="gone" />
+
+
+</LinearLayout>

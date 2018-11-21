@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <corners android:radius="@dimen/y20" />
+    <solid android:color="@color/color_green_1" />
+    <stroke android:color="@color/color_green_1" />
+    <gradient
+        android:angle="180"
+        android:endColor="#7BD6EA"
+        android:startColor="#3BD7D0" /> <!--angle控制渐变的方向--> <!-- 设置按钮的四个角为弧形 --> <!-- android:radius 弧形的半径 -->
+
+</shape>

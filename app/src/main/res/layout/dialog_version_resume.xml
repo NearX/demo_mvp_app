@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/y18"
+    android:paddingTop="@dimen/y10">
+
+    <TextView
+        android:id="@+id/version_old_tv"
+        style="@style/text_tittle_2"
+        android:layout_marginLeft="@dimen/x28"
+        android:text="@string/mine_old_version" />
+
+    <TextView
+        android:id="@+id/version_new_tv"
+        style="@style/text_tittle_2"
+        android:layout_marginLeft="@dimen/x28"
+        android:text="@string/mine_new_version" />
+
+    <TextView
+        style="@style/text_tittle_2"
+        android:layout_marginLeft="@dimen/x28"
+        android:text="@string/mine_update_describe" />
+
+    <TextView
+        android:id="@+id/update_dialog_content"
+        style="@style/text_tittle_2"
+        android:layout_marginLeft="@dimen/x28"
+        android:text="XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+</LinearLayout>

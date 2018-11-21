@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".module.mine.CheckVersionActivity">
+
+    <ImageView
+        android:layout_width="@dimen/x88"
+        android:layout_height="@dimen/y88"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/y30"
+        android:src="@mipmap/icon_logo" />
+
+    <TextView
+        style="@style/text_black_style"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x10"
+        android:text="绩效评估系统" />
+
+    <TextView
+        style="@style/text_black_style"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x10"
+        android:text="V 1.0.0" />
+
+    <TextView
+        android:id="@+id/new_version_tv"
+        style="@style/text_green_style"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x10"
+        android:text="已经是最新版本了！" />
+
+    <TextView
+        android:id="@+id/title_tv"
+        style="@style/text_black_style"
+        android:layout_margin="@dimen/x14"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/update_content_tv"
+        style="@style/text_black_style"
+        android:layout_marginLeft="@dimen/x14"
+        android:layout_marginTop="@dimen/x10"
+        android:lineSpacingExtra="@dimen/x10"
+        android:textColor="@color/color_black_2" />
+</LinearLayout>

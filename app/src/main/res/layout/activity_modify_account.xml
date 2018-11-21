@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".module.mine.ModifyAccountActivity">
+
+    <include layout="@layout/common_header" />
+
+    <EditText
+        android:id="@+id/account_et"
+        style="@style/edit_text_style1"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/x10"
+        android:digits="@string/text_digits"
+        android:hint="@string/input_new_account" />
+
+    <Button
+        android:id="@+id/submit_btn"
+        style="@style/btn_green_style"
+        android:layout_width="@dimen/x140"
+        android:layout_height="@dimen/y40"
+        android:layout_marginTop="@dimen/y30"
+        android:text="@string/submit" />
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/y56"
+    android:background="@color/white"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/x16"
+    android:paddingRight="@dimen/x16"
+    tools:ignore="MissingDefaultResource">
+
+    <Button
+        android:id="@+id/cancel_btn"
+        style="@style/btn_gray_style"
+        android:layout_width="@dimen/x140"
+        android:layout_height="@dimen/y40"
+        android:text="上一步" />
+
+    <Button
+        android:id="@+id/conform_btn"
+        style="@style/btn_green_style"
+        android:layout_width="@dimen/x140"
+        android:layout_height="@dimen/y40"
+        android:layout_marginLeft="@dimen/x16"
+        android:text="下一步" />
+</LinearLayout>
+

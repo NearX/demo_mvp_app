@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".module.mine.PersonalActivity">
+
+    <include layout="@layout/common_header" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/x14">
+
+        <TextView
+            android:id="@+id/mine_account_tv"
+            style="@style/text_black_style"
+            android:textSize="@dimen/text_size_18" />
+
+        <ImageView
+            android:id="@+id/edit_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/mine_account_tv"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_toRightOf="@id/mine_account_tv"
+            android:src="@mipmap/icon_edit" />
+
+        <TextView
+            android:id="@+id/name_tv"
+            style="@style/text_gray_style"
+            android:layout_below="@id/mine_account_tv"
+            android:layout_marginTop="@dimen/x14"
+            android:text="张三" />
+
+        <ImageView
+            android:id="@+id/head_iv"
+            android:layout_width="@dimen/x56"
+            android:layout_height="@dimen/x56"
+            android:layout_alignParentRight="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/user_code_tv"
+            style="@style/text_gray_style"
+            android:layout_below="@id/head_iv"
+            android:layout_marginTop="@dimen/x10" />
+
+        <TextView
+            android:id="@+id/department_tv"
+            style="@style/text_gray_style"
+            android:layout_below="@id/head_iv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/x10" />
+
+        <TextView
+            android:id="@+id/position_tv"
+            style="@style/text_gray_style"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/head_iv"
+            android:layout_marginTop="@dimen/x10" />
+    </RelativeLayout>
+
+    <View style="@style/line_h" />
+
+    <TextView
+        android:id="@+id/personal_message_tv"
+        style="@style/textView_item_style"
+        android:text="@string/personal_message" />
+
+    <View style="@style/line_h" />
+
+    <!--版本检测-->
+    <TextView
+        android:id="@+id/check_version_tv"
+        style="@style/textView_item_style"
+        android:layout_marginTop="@dimen/x10"
+        android:text="@string/check_version" />
+
+    <View style="@style/line_h" />
+</LinearLayout>

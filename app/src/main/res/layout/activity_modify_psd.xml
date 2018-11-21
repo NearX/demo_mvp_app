@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".module.mine.ModifyPsdActivity">
+
+    <include layout="@layout/common_header" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y50">
+
+        <TextView
+            style="@style/text_gray_style"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/x14"
+            android:text="@string/old_password" />
+
+        <EditText
+            android:id="@+id/old_password_et"
+            style="@style/edit_text_style1"
+            android:layout_gravity="center"
+            android:hint="@string/input_old_password"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y50">
+
+        <TextView
+            style="@style/text_gray_style"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/x14"
+            android:text="@string/new_password" />
+
+        <EditText
+            android:id="@+id/new_password_et"
+            style="@style/edit_text_style1"
+            android:layout_gravity="center"
+            android:hint="@string/input_new_password"
+            android:inputType="textPassword" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y50">
+
+        <TextView
+            style="@style/text_gray_style"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/x14"
+            android:text="@string/new_password" />
+
+        <EditText
+            android:id="@+id/again_password_et"
+            style="@style/edit_text_style1"
+            android:layout_gravity="center"
+            android:hint="@string/input_again_password"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/submit_btn"
+        style="@style/btn_green_style"
+        android:layout_width="@dimen/x140"
+        android:layout_height="@dimen/y40"
+        android:layout_marginTop="@dimen/y30"
+        android:text="@string/submit" />
+</LinearLayout>
