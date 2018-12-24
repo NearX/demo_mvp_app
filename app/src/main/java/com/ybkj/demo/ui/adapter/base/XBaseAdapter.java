@@ -2,10 +2,12 @@ package com.ybkj.demo.ui.adapter.base;
 
 import android.animation.Animator;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -60,6 +62,20 @@ public abstract class XBaseAdapter<T> extends BaseQuickAdapter<T, XBaseViewHolde
 //        super.loadMoreComplete();
 //        setEnableLoadMore(false);
 //    }
+
+    @Override
+    public void addData(@NonNull T data) {
+        super.addData(data);
+        loadMoreComplete();
+    }
+
+
+    @Override
+    public void addData(@NonNull Collection<? extends T> newData) {
+        super.addData(newData);
+        loadMoreComplete();
+    }
+
 
     @Override
     protected XBaseViewHolder onCreateDefViewHolder(ViewGroup parent, int viewType) {

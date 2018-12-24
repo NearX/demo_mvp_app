@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!--自定义带外边框的TextView -->
+    <declare-styleable name="myTextView">
+        <attr name="line_height" format="dimension" />
+        <attr name="line_color" format="reference|color" />
+        <attr name="radius" format="dimension" />
+        <attr name="background_color" format="reference|color" />
+
+    </declare-styleable>
 
     <!-- 末行对齐方式 -->
     <declare-styleable name="AlignTextView">

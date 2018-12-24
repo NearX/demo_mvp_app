@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     tools:context=".module.login.activity.LoginActivity">
 
@@ -102,6 +103,19 @@
             android:text="@string/forgot"
             android:textColor="@color/color_gray_1"
             android:textSize="@dimen/text_size_14" />
+
+        <com.ybkj.demo.ui.view.MyTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/y8"
+            android:paddingLeft="@dimen/x10"
+            android:paddingRight="@dimen/x10"
+            android:paddingTop="@dimen/y8"
+            android:text="asdasdasd"
+            app:background_color="@color/color_gray_2"
+            app:line_color="@color/color_red_1"
+            app:line_height="@dimen/y2"
+            app:radius="@dimen/x20" />
 
     </LinearLayout>
 

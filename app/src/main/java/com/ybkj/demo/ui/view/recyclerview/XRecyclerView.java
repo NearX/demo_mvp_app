@@ -46,7 +46,12 @@ public class XRecyclerView extends RecyclerView {
                 int topRowVerticalPosition =
                         (recyclerView == null || recyclerView.getChildCount() == 0) ? 0 : recyclerView.getChildAt(0)
                                 .getTop();
-                mIsCanRefresh = topRowVerticalPosition >= 0;
+
+                if (layoutManager.findFirstCompletelyVisibleItemPosition() == 0 && topRowVerticalPosition >= 0) {
+                    mIsCanRefresh = true;
+                } else {
+                    mIsCanRefresh = false;
+                }
             }
 
             @Override

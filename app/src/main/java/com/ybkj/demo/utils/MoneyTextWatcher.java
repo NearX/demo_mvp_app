@@ -34,8 +34,8 @@ public class MoneyTextWatcher implements TextWatcher {
     @Override
     public void onTextChanged(CharSequence s, int i, int i1, int i2) {
         if (s.toString().contains(".")) {
-            if (s.length() - 1 - s.toString().indexOf(".") > 2) {
-                s = s.toString().subSequence(0, s.toString().indexOf(".") + 2 + 1);
+            if (s.length() - 1 - s.toString().indexOf(".") > digits) {
+                s = s.toString().subSequence(0, s.toString().indexOf(".") + digits + 1);
                 editText.setText(s);
                 editText.setSelection(s.length());
                 //光标移到最后
