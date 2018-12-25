@@ -14,7 +14,7 @@ import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
 import com.ybkj.demo.BuildConfig;
-import com.ybkj.demo.MyApplication;
+import com.ybkj.demo.SampleApplicationLike;
 
 import net.tsz.afinal.FinalHttp;
 import net.tsz.afinal.http.AjaxCallBack;
@@ -134,8 +134,8 @@ public class AppUpdateVersionCheckUtil {
      */
     public static String getVersion() {
         try {
-            PackageManager manager = MyApplication.getInstance().getPackageManager();
-            PackageInfo info = manager.getPackageInfo(MyApplication.getInstance().getPackageName(), 0);
+            PackageManager manager = SampleApplicationLike.getInstance().getPackageManager();
+            PackageInfo info = manager.getPackageInfo(SampleApplicationLike.getInstance().getPackageName(), 0);
             String version = info.versionName;
             return version;
         } catch (Exception e) {

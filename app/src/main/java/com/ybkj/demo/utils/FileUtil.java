@@ -3,7 +3,7 @@ package com.ybkj.demo.utils;
 import android.content.Context;
 import android.os.Environment;
 
-import com.ybkj.demo.MyApplication;
+import com.ybkj.demo.SampleApplicationLike;
 
 import java.io.File;
 
@@ -27,7 +27,7 @@ public class FileUtil {
      * 获取上下文
      */
     public static Context getContext() {
-        return MyApplication.getInstance();
+        return SampleApplicationLike.getInstance();
     }
 
     public static String getFileNameFromUrl(String url) {

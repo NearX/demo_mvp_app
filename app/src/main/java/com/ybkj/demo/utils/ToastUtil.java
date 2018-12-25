@@ -6,7 +6,7 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.widget.Toast;
 
-import com.ybkj.demo.MyApplication;
+import com.ybkj.demo.SampleApplicationLike;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;
@@ -37,7 +37,7 @@ public class ToastUtil {
             return;
         }
         if (toast == null) {
-            toast = Toast.makeText(MyApplication.getInstance(), message, Toast.LENGTH_SHORT);
+            toast = Toast.makeText(SampleApplicationLike.getInstance(), message, Toast.LENGTH_SHORT);
         } else {
             toast.setDuration(Toast.LENGTH_SHORT);
             toast.setText(message);

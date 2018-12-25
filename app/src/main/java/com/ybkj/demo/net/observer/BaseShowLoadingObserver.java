@@ -2,8 +2,8 @@ package com.ybkj.demo.net.observer;
 
 import android.content.Context;
 
-import com.ybkj.demo.MyApplication;
 import com.ybkj.demo.R;
+import com.ybkj.demo.SampleApplicationLike;
 import com.ybkj.demo.common.NetResponseCode;
 import com.ybkj.demo.manager.SystemManager;
 import com.ybkj.demo.net.HttpCallBack;
@@ -76,7 +76,7 @@ public class BaseShowLoadingObserver<T> extends BaseObserver<T> {
             initProgressDialog(isCancel);
             showLoading();
         }
-        if (!SystemManager.isNetworkAvailable(MyApplication.getInstance())) {
+        if (!SystemManager.isNetworkAvailable(SampleApplicationLike.getInstance())) {
             onRequestError(HandlerException.handleException(new
                     HandlerException.ResponseThrowable(ResourcesUtil.getString(R.string.net_connect_error),
                     NetResponseCode

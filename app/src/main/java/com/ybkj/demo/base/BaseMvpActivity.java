@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.ybkj.demo.MyApplication;
 import com.ybkj.demo.R;
+import com.ybkj.demo.SampleApplicationLike;
 import com.ybkj.demo.dagger.component.ActivityComponent;
 import com.ybkj.demo.dagger.component.DaggerActivityComponent;
 import com.ybkj.demo.dagger.module.ActivityModule;
@@ -48,7 +48,7 @@ public abstract class BaseMvpActivity<T extends BaseRxPresenter> extends BaseAct
      */
     public ActivityComponent getActivityComponent() {
         return DaggerActivityComponent.builder()
-                .appComponent(MyApplication.getAppComponent())
+                .appComponent(SampleApplicationLike.getAppComponent())
                 .activityModule(new ActivityModule(this))
                 .build();
     }
