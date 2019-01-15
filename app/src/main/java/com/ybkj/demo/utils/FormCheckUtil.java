@@ -84,6 +84,27 @@ public class FormCheckUtil {
     }
 
     /**
+     * 验证账号
+     *
+     * @param account
+     * @return
+     */
+    public static boolean accountCheck(String account) {
+
+        if (TextUtils.isEmpty(account)) {
+            ToastUtil.showShort(ResourcesUtil.getString(R.string.login_account_null));
+            return true;
+        }
+
+        if (account.length() < 6) {
+            ToastUtil.showShort(ResourcesUtil.getString(R.string.login_account_min_six));
+            return true;
+        }
+        return false;
+    }
+
+
+    /**
      * 验证所传验证码的格式
      *
      * @param verificationCode
@@ -133,6 +154,32 @@ public class FormCheckUtil {
         return false;
     }
 
+
+    /**
+     * 检查两次输入的密码
+     *
+     * @param newPass
+     * @param againPsd
+     * @return
+     */
+    public static boolean checkPassAndNewPass(String newPass, String againPsd) {
+        if (TextUtils.isEmpty(newPass)) {
+            ToastUtil.showShort(ResourcesUtil.getString(R.string.login_new_pass_null));
+            return true;
+        }
+        if (newPass.length() < 6) {
+            ToastUtil.showShort(ResourcesUtil.getString(R.string.login_new_pass_min_six));
+            return true;
+        }
+        if (TextUtils.isEmpty(againPsd)) {
+            ToastUtil.showShort(ResourcesUtil.getString(R.string.login_new_pass_again));
+            return true;
+        }
+        if (pwdAgainFormCheck(newPass, againPsd)) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * 校验密码

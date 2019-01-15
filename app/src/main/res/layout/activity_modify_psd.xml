@@ -21,7 +21,7 @@
 
         <EditText
             android:id="@+id/old_password_et"
-            style="@style/edit_text_style1"
+            style="@style/edit_text_style"
             android:layout_gravity="center"
             android:hint="@string/input_old_password"
             android:inputType="textPassword" />
@@ -40,7 +40,7 @@
 
         <EditText
             android:id="@+id/new_password_et"
-            style="@style/edit_text_style1"
+            style="@style/edit_text_style"
             android:layout_gravity="center"
             android:hint="@string/input_new_password"
             android:inputType="textPassword" />
@@ -59,7 +59,7 @@
 
         <EditText
             android:id="@+id/again_password_et"
-            style="@style/edit_text_style1"
+            style="@style/edit_text_style"
             android:layout_gravity="center"
             android:hint="@string/input_again_password"
             android:inputType="textPassword" />
@@ -68,7 +68,7 @@
 
     <Button
         android:id="@+id/submit_btn"
-        style="@style/btn_green_style"
+        style="@style/btn_normal_style"
         android:layout_width="@dimen/x140"
         android:layout_height="@dimen/y40"
         android:layout_marginTop="@dimen/y30"

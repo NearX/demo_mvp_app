@@ -11,7 +11,7 @@
 
     <EditText
         android:id="@+id/account_et"
-        style="@style/edit_text_style1"
+        style="@style/edit_text_style"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/x10"
         android:digits="@string/text_digits"
@@ -19,7 +19,7 @@
 
     <Button
         android:id="@+id/submit_btn"
-        style="@style/btn_green_style"
+        style="@style/btn_normal_style"
         android:layout_width="@dimen/x140"
         android:layout_height="@dimen/y40"
         android:layout_marginTop="@dimen/y30"

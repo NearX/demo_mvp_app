@@ -34,13 +34,8 @@
     <color name="color_green_3">#36D7CF</color>
     <color name="color_green_4">#3DD7D1</color>
     <color name="color_green_5">#40D174</color>
-    <color name="scan_bg">#cc12111A</color>
-    <color name="color_89">#898989</color>
 
-    <color name="color_d3">#43D6D3</color>
-    <color name="color_ad">#ACADAD</color>
-    <color name="color_63">#E76763</color>
-    <color name="color_49">#484B49</color>
-    <color name="color_f9">#fff8f8f9</color>
+    <color name="scan_bg">#cc12111A</color>
+
     <color name="color_blue_1">#3071E9</color>
 </resources>

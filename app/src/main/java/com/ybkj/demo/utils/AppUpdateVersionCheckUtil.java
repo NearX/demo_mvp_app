@@ -15,19 +15,17 @@ import android.text.TextUtils;
 
 import com.ybkj.demo.BuildConfig;
 import com.ybkj.demo.SampleApplicationLike;
-
-import net.tsz.afinal.FinalHttp;
-import net.tsz.afinal.http.AjaxCallBack;
+import com.ybkj.demo.service.ApkDownInstallService;
 
 import java.io.File;
 import java.util.List;
 
 /**
- * APP更新版本检测
+ * APP更新版本检测下载安装
  *
- * @author Yun
  */
 public class AppUpdateVersionCheckUtil {
+    public static int APK_VERSION_UPDATE_FORCE = 2; // 更新更新类型，1：可用更新，2：强制更新
     private OnDownLoadListener listener;
 
     private AppUpdateVersionCheckUtil() {
@@ -158,7 +156,7 @@ public class AppUpdateVersionCheckUtil {
     public void downLoadApk(Activity mContext, String url) {
         LogUtil.i("开始下载url=" + url);
         RxPermissionUtils.getInstance(mContext).setPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE).
+                Manifest.permission.WRITE_EXTERNAL_STORAGE).
                 setOnPermissionCallBack(new RxPermissionUtils.OnPermissionListener() {
 
                     @Override
@@ -174,42 +172,10 @@ public class AppUpdateVersionCheckUtil {
 
                     @Override
                     protected void onAllPermissionFinish() {
-                        FinalHttp finalHttp = new FinalHttp();
+                        Intent intent = new Intent(mContext, ApkDownInstallService.class);
+                        intent.putExtra("apkUrl", url);
+                        mContext.startService(intent);
                         listener.onBegin();
-                        String target = FileUtil.createDir("download", FileUtil.getFileNameFromUrl(url));
-                        finalHttp.download(url, target, false, new AjaxCallBack<File>() {
-
-                            @Override
-                            public void onLoading(long count, long current) {
-                                super.onLoading(count, current);
-                                int progrss = (int) ((float) current / (float) count) * 100;
-                                LogUtil.i("下载进度=progrss" + progrss);
-//                        mView.update(progrss);
-                                if (listener != null) {
-                                    listener.onProgress(progrss);
-                                }
-                            }
-
-                            @Override
-                            public void onSuccess(File file) {
-                                LogUtil.i("下载进度=progrss" + "下载完成");
-                                super.onSuccess(file);
-                                installApk(mContext, file);
-                                if (listener != null) {
-                                    listener.onSuccess();
-                                }
-                            }
-
-                            @Override
-                            public void onFailure(Throwable t, int errorNo, String strMsg) {
-                                super.onFailure(t, errorNo, strMsg);
-                                LogUtil.i("下载进度=progrss" + "onFailure" + strMsg);
-//                        mView.downLoadFailed();
-                                if (listener != null) {
-                                    listener.onFailed();
-                                }
-                            }
-                        });
                     }
                 }).start();
 

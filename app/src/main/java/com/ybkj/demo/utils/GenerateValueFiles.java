@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
+/**
+ * value中  px.pt 文件生成工具类
+ */
 public class GenerateValueFiles {
 
     private final static String WTemplate = "<dimen name=\"x{0}\">{1}px</dimen>\n";

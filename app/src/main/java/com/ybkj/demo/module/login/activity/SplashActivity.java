@@ -17,7 +17,6 @@ import com.ybkj.demo.ui.dialog.TipDialog;
 import com.ybkj.demo.ui.dialog.VersionDialog;
 import com.ybkj.demo.utils.AppUpdateVersionCheckUtil;
 import com.ybkj.demo.utils.RxPermissionUtils;
-import com.ybkj.demo.utils.SystemUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -79,7 +78,7 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
     public void onError(String errorMsg) {
         super.onError(errorMsg);
         timeFinish = true;
-        goMianActivity();
+        goMainActivity();
     }
 
     /**
@@ -93,18 +92,18 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
                             if (aBoolean) {
                                 //true表示获取权限成功（android6.0以下默认为true）
                                 permissionFinish = true;
-                                goMianActivity();
+                                goMainActivity();
                             } else {
                                 TipDialog tipDialog = new TipDialog(mContext);
                                 tipDialog.setMessageText("为保障APP的正常运行，需要进行权限授予");
                                 tipDialog.setConfirmButtonText("授予权限");
                                 tipDialog.setCancelButtonText("退出APP");
                                 tipDialog.setOnCancelButtonClickListener((dialog, view) -> {
-                                    dialog.dismiss();
-                                    checkPermission();
+                                    finish();
                                 });
                                 tipDialog.setOnConfirmButtonClickListener((dialog, view) -> {
-                                    finish();
+                                    dialog.dismiss();
+                                    checkPermission();
                                 });
                                 tipDialog.show();
                             }
@@ -118,7 +117,7 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
      * 跳转主页面
      * 根据token判断是否需要用户登录
      */
-    private void goMianActivity() {
+    private void goMainActivity() {
         if (timeFinish && permissionFinish && !isUpdate) {
             LoginRes token = UserDataManager.getLoginInfo();
             isLogin = true;
@@ -143,14 +142,13 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
     }
 
     @Override
-    public void LoadData(VersionRes appUpdateRes) {
-        if (appUpdateRes == null) {
+    public void LoadData(VersionRes.AppVersionBean appUpdateRes) {
+        if (appUpdateRes == null) { //更新信息为空
             isUpdate = false;
-            goMianActivity();
+            goMainActivity();
             return;
         }
-        String oldVersion = SystemUtil.getAppVersionName(mContext);
-        String newestVersion = appUpdateRes.getNewestVersion();
+        String newestVersion = appUpdateRes.getVersionNumber(); //获取平台最新版本号
         boolean canUpdate = false;
         try {
             canUpdate = AppUpdateVersionCheckUtil.compareVersion(newestVersion);
@@ -160,25 +158,25 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
         if (!canUpdate) {
             timeFinish = true;
             toast("当前已是最新版本");
-            goMianActivity();
+            goMainActivity();
             return;
         }
-        VersionDialog updateDialog = new VersionDialog(mContext, appUpdateRes.getNewestVersion(), appUpdateRes.getUpdateExplain());
+        VersionDialog updateDialog = new VersionDialog(mContext, appUpdateRes.getVersionNumber(), appUpdateRes.getUpdateExplain());
 
-        if (appUpdateRes.getForceStatus() == 1) {// 1 强制更新 2不强制更新
+        if (appUpdateRes.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
             updateDialog.setCancelButtonText("退出应用");
         } else {
             updateDialog.setCancelButtonText("取消更新");
         }
         isUpdate = true;
         updateDialog.setOnCancelButtonClickListener((dialog, view) -> {
-            if (appUpdateRes.getForceStatus() == 1) {// 1 强制更新 2不强制更新
+            if (appUpdateRes.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
                 ActivityManager.exit();
             } else {
                 updateDialog.dismiss();
                 timeFinish = true;
                 isUpdate = false;
-                goMianActivity();
+                goMainActivity();
             }
         });
         updateDialog.setOnConfirmButtonClickListener((dialog, view) -> {
@@ -196,11 +194,14 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
 
                 @Override
                 protected void onBegin() {
-                    if (appUpdateRes.getForceStatus() == 1) {// 1 强制更新 2不强制更新
+                    if (appUpdateRes.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
                         toast("应用正在下载，请稍后");
                     } else {
                         updateDialog.dismiss();
                         toast("应用转入后台下载");
+                        timeFinish = true;
+                        isUpdate = false;
+                        goMainActivity();
                     }
                 }
             }).downLoadApk(mContext, appUpdateRes.getAppUrl());
@@ -216,7 +217,7 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
 
             if (integer == 0 && isLogin == false) {
                 timeFinish = true;
-                goMianActivity();
+                goMainActivity();
             }
         });
     }

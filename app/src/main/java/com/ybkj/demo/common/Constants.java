@@ -13,7 +13,8 @@ public class Constants {
     public static final String PROJECT = "demo";
 
     public static final String PORT = "app/";
-    public static final String DEFAULT_BASE_URL = "http://192.168.0.1:8080/" + PORT;
+    //    public static final String DEFAULT_BASE_URL = "http://192.168.4.103:18083/" + PORT;
+    public static final String DEFAULT_BASE_URL = "http://192.168.4.103:18083";
 
     //intent请求公共key
     public static final String INTENT_PARAMETER_1 = "intent_parameter_1";
@@ -22,8 +23,9 @@ public class Constants {
     public static final String INTENT_PARAMETER_4 = "intent_parameter_4";
 
     //连接超时时间
-    public static final int connectionTime = 5;
+    public static final int connectionTime = 15;
 
+    //默认每页加载条目数
     public static final int PAGE_NUM = 20;
 
     //请求标记码

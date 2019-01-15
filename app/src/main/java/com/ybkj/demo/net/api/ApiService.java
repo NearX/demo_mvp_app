@@ -10,6 +10,7 @@ import com.ybkj.demo.bean.response.VersionRes;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -83,7 +84,7 @@ public interface ApiService {
      *
      * @return
      */
-    @POST("userApp/version/updateVersion")
+    @GET("/app/agent/versions")
     Observable<BaseResponse<VersionRes>> getVersion();
 
     /**

@@ -56,11 +56,11 @@ public class CheckVersionActivity extends BaseMvpActivity<CheckVersionPresenter>
     }
 
     @Override
-    public void LoadData(VersionRes res) {
+    public void LoadData(VersionRes.AppVersionBean res) {
         if (res != null) {
 
             try {
-                canUpdate = AppUpdateVersionCheckUtil.compareVersion(res.getNewestVersion());
+                canUpdate = AppUpdateVersionCheckUtil.compareVersion(res.getVersionNumber());
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -72,18 +72,18 @@ public class CheckVersionActivity extends BaseMvpActivity<CheckVersionPresenter>
                 toast("当前已是最新版本");
                 return;
             }
-            newVersionTv.setText(res.getNewestVersion());
+            newVersionTv.setText(res.getVersionNumber());
             titleTv.setText("更新说明");
             updateContentTv.setText(res.getUpdateExplain());
-            VersionDialog updateDialog = new VersionDialog(mContext, res.getNewestVersion(), res.getUpdateExplain());
+            VersionDialog updateDialog = new VersionDialog(mContext, res.getVersionNumber(), res.getUpdateExplain());
 
-            if (res.getForceStatus() == 1) {// 1 强制更新 2不强制更新
+            if (res.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
                 updateDialog.setCancelButtonText("退出应用");
             } else {
                 updateDialog.setCancelButtonText("取消更新");
             }
             updateDialog.setOnCancelButtonClickListener((dialog, view) -> {
-                if (res.getForceStatus() == 1) {// 1 强制更新 2不强制更新
+                if (res.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
                     ActivityManager.exit();
                 } else {
                     updateDialog.dismiss();
@@ -105,7 +105,7 @@ public class CheckVersionActivity extends BaseMvpActivity<CheckVersionPresenter>
 
                     @Override
                     protected void onBegin() {
-                        if (res.getForceStatus() == 1) {// 1 强制更新 2不强制更新
+                        if (res.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
                             toast("应用正在下载，请稍后");
                         } else {
                             updateDialog.dismiss();

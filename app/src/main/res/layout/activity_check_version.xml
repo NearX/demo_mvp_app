@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/new_version_tv"
-        style="@style/text_green_style"
+        style="@style/text_black_style"
         android:layout_gravity="center"
         android:layout_marginTop="@dimen/x10"
         android:text="已经是最新版本了！" />

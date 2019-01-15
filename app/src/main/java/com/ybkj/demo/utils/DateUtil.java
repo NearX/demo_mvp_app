@@ -69,6 +69,11 @@ public class DateUtil {
     public static final String dateFormat11 = "yyyyMMdd";
 
     /**
+     * 时间字符串格式：MM:dd
+     */
+    public static final String dateFormat12 = "MM:dd";
+
+    /**
      * 获取当前时间的时间戳毫秒数
      * 推荐此种方法，执行速度快
      *
@@ -283,5 +288,24 @@ public class DateUtil {
         Date curDate = new Date(System.currentTimeMillis());
         String str = formatter.format(curDate);
         return str;
+    }
+
+
+    /**
+     * 获取带月日的时间
+     *
+     * @return
+     */
+    public static String getDateTime(long time) {
+        String timeStr = longToTimeStr(time, dateFormat12);
+        String returnStr = null;
+        if (timeStr != null) {
+            String[] str2 = timeStr.split(":");
+            if (str2.length == 2) {
+                returnStr = str2[0] + "月" + str2[1] + "日";
+            }
+        }
+
+        return returnStr;
     }
 }

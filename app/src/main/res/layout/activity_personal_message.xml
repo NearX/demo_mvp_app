@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/modify_psd_tv"
-        style="@style/textView_item_style"
+        style="@style/text_item_more_style"
         android:background="@color/white"
         android:text="@string/modify_psd" />
 
@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/logon_phone_tv"
-            style="@style/text_more_gray_style"
+            style="@style/text_item_more_style"
             android:layout_height="@dimen/y56"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/x14"

@@ -12,14 +12,14 @@
 
     <Button
         android:id="@+id/cancel_btn"
-        style="@style/btn_gray_style"
+        style="@style/btn_gray"
         android:layout_width="@dimen/x140"
         android:layout_height="@dimen/y40"
         android:text="上一步" />
 
     <Button
         android:id="@+id/conform_btn"
-        style="@style/btn_green_style"
+        style="@style/btn_normal_style"
         android:layout_width="@dimen/x140"
         android:layout_height="@dimen/y40"
         android:layout_marginLeft="@dimen/x16"

@@ -87,7 +87,7 @@
 
         <Button
             android:id="@+id/login_btn"
-            style="@style/btn_green"
+            style="@style/btn_normal_style"
             android:layout_width="@dimen/x140"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/y112"

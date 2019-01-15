@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/black</item>
@@ -10,10 +9,7 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="mainActivityTheme" parent="AppTheme">
-        <item name="android:windowIsTranslucent">false</item>
-    </style>
-
+    <!-- 弹出框公共样式-->
     <style name="common_dialog" parent="android:style/Theme.Dialog">
         <item name="android:windowFrame">@null</item><!--边框-->
         <item name="android:windowNoTitle">true</item><!--无标题-->
@@ -24,15 +20,16 @@
         <item name="android:backgroundDimEnabled">false</item><!-- 模糊 -->
     </style>
 
-    <style name="update_dialog" parent="android:style/Theme.Dialog">
-        <item name="android:windowFrame">@null</item><!--边框-->
-        <item name="android:windowNoTitle">true</item><!--无标题-->
+    <!-- APK更新弹出框样式-->
+    <style name="update_dialog" parent="common_dialog">
         <item name="android:windowBackground">@color/transparent</item><!--背景透明-->
-        <item name="android:windowIsFloating">true</item><!--是否浮现在activity之上-->
-        <item name="android:windowIsTranslucent">false</item><!--半透明-->
-        <item name="android:windowContentOverlay">@null</item>
-        <item name="android:backgroundDimEnabled">false</item><!-- 模糊 -->
     </style>
+
+    <!--图片放大弹出框样式 -->
+    <style name="img_dialog" parent="common_dialog">
+        <item name="android:windowBackground">@color/black</item><!--背景透明-->
+    </style>
+
 
     <!--line样式-->
     <style name="line_h">
@@ -48,135 +45,107 @@
         <item name="android:background">@color/color_line</item>
     </style>
 
-    <style name="btn" parent="@style/Widget.AppCompat.Button.Borderless">
+    <!--按钮基础样式样式-->
+    <style name="btn_style" parent="@style/Widget.AppCompat.Button.Borderless">
         <item name="android:textColor">@color/white</item>
-        <item name="android:layout_height">@dimen/y40</item>
         <item name="android:textSize">@dimen/text_size_14</item>
         <item name="android:gravity">center</item>
     </style>
 
-    <style name="btn_green" parent="btn">
+    <!-- 底本按钮基础样式-->
+    <style name="btn_normal_style" parent="btn_style">
         <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/y40</item>
         <item name="android:background">@drawable/shape_button_bg</item>
     </style>
 
     <!-- 底部主按钮样式-->
-    <style name="btn_white" parent="btn">
+    <style name="btn_white" parent="btn_style">
         <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/y40</item>
         <item name="android:background">@drawable/shape_button_white_bg</item>
         <item name="android:textColor">@color/color_green_1</item>
     </style>
 
     <!-- 底部主按钮样式-->
-    <style name="btn_gray" parent="btn">
-        <item name="android:background">@drawable/shape_button_gray_bg</item>
-        <item name="android:textColor">@color/color_gray_1</item>
+    <style name="btn_gray" parent="btn_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/y40</item>
-    </style>
-    <!-- 底部主按钮样式-->
-    <style name="bottom_btn_layout">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/y48</item>
-        <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:background">@color/white</item>
-        <item name="android:orientation">horizontal</item>
-        <item name="android:paddingRight">@dimen/x32</item>
-        <item name="android:paddingLeft">@dimen/x32</item>
-        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/shape_button_gray_bg</item>
+        <item name="android:textColor">@color/color_gray_1</item>
     </style>
 
-
-    <!-- 输入框样式-->
+    <!-- 输入框基本样式-->
     <style name="edit_text_style">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/y40</item>
         <item name="android:textSize">@dimen/text_size_14</item>
         <item name="android:textColor">@color/color_black_1</item>
         <item name="android:textColorHint">@color/color_text_hint</item>
         <item name="android:background">@drawable/shape_edit_bg</item>
         <item name="android:singleLine">true</item>
-        <item name="android:textCursorDrawable">@null</item>
-    </style>
-
-    <!-- 输入选择框统一样式-->
-    <style name="select_text_style">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">@dimen/y40</item>
-        <item name="android:textSize">@dimen/text_size_16</item>
-        <item name="android:textColor">@color/color_black_1</item>
-        <item name="android:textColorHint">@color/color_text_hint</item>
-        <item name="android:background">@drawable/shape_edit_bg</item>
-        <item name="android:layout_marginLeft">@dimen/x14</item>
-        <item name="android:layout_marginRight">@dimen/x14</item>
-        <item name="android:textCursorDrawable">@null</item>
-        <item name="android:drawableRight">@mipmap/ic_more_black</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:singleLine">true</item>
+        <item name="android:textCursorDrawable">@null</item>
         <item name="android:ellipsize">end</item>
     </style>
 
-
-    <!-- TextView 统一样式-->
-    <style name="text_style_base">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-    <!-- TextView 统一样式-->
-    <style name="text_style_gray_1" parent="text_style_base">
-        <item name="android:textColor">@color/color_gray_1</item>
-        <item name="android:textSize">@dimen/text_size_14</item>
-        <item name="android:drawablePadding">@dimen/x4</item>
-    </style>
-
-    <!-- TextView 统一样式-->
-    <style name="text_style_black_2" parent="text_style_base">
-        <item name="android:textColor">@color/color_black_2</item>
-        <item name="android:textSize">@dimen/text_size_14</item>
-        <item name="android:drawablePadding">@dimen/x4</item>
-    </style>
-
-    <!-- TextView 按钮统一样式-->
-    <style name="text_style_green_1" parent="text_style_base">
-        <item name="android:textColor">@color/color_green_3</item>
-        <item name="android:textSize">@dimen/text_size_14</item>
-        <item name="android:gravity">center</item>
-    </style>
-
-
-    <!-- TextView 统一样式-->
-    <style name="text_style_gray_2" parent="text_style_base">
-        <item name="android:textColor">@color/color_gray_2</item>
-        <item name="android:textSize">@dimen/text_size_14</item>
-    </style>
-
-    <!-- 大标题-->
-    <style name="text_tittle_1">
-        <item name="android:textSize">@dimen/text_size_18</item>
-        <item name="android:textColor">@color/color_black_1</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-    <!-- 标题-->
-    <style name="text_tittle_2">
+    <!-- 输入选择框统一样式-->
+    <style name="select_text_style" parent="edit_text_style">
         <item name="android:textSize">@dimen/text_size_16</item>
         <item name="android:textColor">@color/color_black_1</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/x14</item>
+        <item name="android:layout_marginRight">@dimen/x14</item>
+        <item name="android:drawableRight">@mipmap/ic_more_black</item>
+        <item name="android:ellipsize">end</item>
     </style>
 
-    <!-- 小标题-->
-    <style name="text_tittle_3">
-        <item name="android:textSize">@dimen/text_size_14</item>
-        <item name="android:textColor">@color/color_black_2</item>
-        <item name="android:minWidth">@dimen/x56</item>
+    <!-- TextView 基础统一样式-->
+    <style name="text_base_style">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginLeft">@dimen/x14</item>
-        <item name="android:layout_marginTop">@dimen/y14</item>
-        <item name="android:layout_marginRight">@dimen/x14</item>
+        <item name="android:gravity">center_vertical</item>
+
+    </style>
+
+    <!--TextView 灰色文字样式-->
+    <style name="text_gray_style" parent="text_base_style">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/color_gray_1</item>
+    </style>
+
+    <!--黑色-->
+    <style name="text_black_style" parent="text_base_style">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/color_black_1</item>
+    </style>
+    <!--黑色-->
+    <style name="text_black_style2" parent="text_black_style">
+        <item name="android:textColor">@color/color_black_2</item>
+    </style>
+
+    <!-- 最大字体大标题-->
+    <style name="text_tittle_20" parent="text_base_style">
+        <item name="android:textSize">@dimen/text_size_20</item>
+        <item name="android:textColor">@color/color_black_1</item>
+    </style>
+
+    <!-- 展开更多更多Textview item-->
+    <style name="text_item_more_style" parent="text_base_style">
+        <item name="android:textSize">@dimen/text_size_14</item>
+        <item name="android:textColor">@color/color_black_1</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/y56</item>
+        <item name="android:drawableRight">@mipmap/ic_more</item>
+        <item name="android:drawablePadding">@dimen/x10</item>
+        <item name="android:paddingRight">@dimen/x14</item>
+        <item name="android:paddingLeft">@dimen/x14</item>
+    </style>
+
+    <!-- 中等字体大小标题-->
+    <style name="text_tittle_16" parent="text_base_style">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/color_black_1</item>
     </style>
 
 
@@ -197,6 +166,7 @@
         <item name="android:layout_alignParentRight">true</item>
     </style>
 
+    <!-- 进度条progressBar样式  横向-->
     <style name="progressBarHorizontal" parent="android:Widget.ProgressBar.Horizontal">
         <item name="android:indeterminateOnly">false</item>
         <!-- 这个属性就是配置进度的颜色和背景的颜色 -->
@@ -205,118 +175,12 @@
         <item name="android:maxHeight">@dimen/y2</item>
     </style>
 
+    <!-- 底部弹出框出现动画样式-->
     <style name="choose_item_dialog_animation">
         <!--动画的style-->
         <item name="android:windowEnterAnimation">@anim/anim_dialog_enter</item>
         <item name="android:windowExitAnimation">@anim/anim_dialog_exit</item>
     </style>
-
-    <!-- 首页item布局-->
-    <style name="main_item_style">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:gravity">center</item>
-        <item name="android:drawablePadding">@dimen/y2</item>
-        <item name="android:paddingTop">@dimen/y8</item>
-        <item name="android:background">@color/white</item>
-
-    </style>
-
-    <!-- 更多Textview item-->
-    <style name="textView_item_style">
-        <item name="android:textSize">@dimen/text_size_14</item>
-        <item name="android:textColor">@color/color_black_1</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">@dimen/y56</item>
-        <item name="android:drawableRight">@mipmap/ic_more</item>
-        <item name="android:drawablePadding">@dimen/x10</item>
-        <item name="android:paddingRight">@dimen/x14</item>
-        <item name="android:paddingLeft">@dimen/x14</item>
-        <item name="android:gravity">center_vertical</item>
-
-    </style>
-    <!-- 输入框统一样式-->
-    <style name="edit_text_style1">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:minHeight">@dimen/y40</item>
-        <item name="android:textSize">@dimen/text_size_16</item>
-        <item name="android:textColor">@color/color_black_1</item>
-        <item name="android:textColorHint">@color/color_text_hint</item>
-        <item name="android:background">@drawable/shape_edit_bg</item>
-        <item name="android:layout_marginLeft">@dimen/x14</item>
-        <item name="android:layout_marginRight">@dimen/x14</item>
-        <item name="android:singleLine">true</item>
-        <item name="android:textCursorDrawable">@null</item>
-    </style>
-
-    <style name="edit_text_style2" parent="edit_text_style1">
-        <item name="android:background">@drawable/shape_edit_bg</item>
-    </style>
-    <!--灰色-->
-    <style name="text_gray_style">
-        <item name="android:textSize">@dimen/text_size_14</item>
-        <item name="android:textColor">@color/color_gray_1</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_vertical</item>
-    </style>
-
-    <!--灰色带箭头-->
-    <style name="text_more_gray_style">
-        <item name="android:textSize">@dimen/text_size_14</item>
-        <item name="android:textColor">@color/color_gray_1</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:drawableRight">@mipmap/ic_more</item>
-        <item name="android:drawablePadding">@dimen/x10</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_vertical</item>
-    </style>
-    <!--黑色-->
-    <style name="text_black_style">
-        <item name="android:textSize">@dimen/text_size_14</item>
-        <item name="android:textColor">@color/color_black_1</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_vertical</item>
-    </style>
-    <!--黑色-->
-    <style name="text_black_style2" parent="text_black_style">
-        <item name="android:textColor">@color/color_black_2</item>
-    </style>
-    <!--绿色字体-->
-    <style name="text_green_style">
-        <item name="android:textSize">@dimen/text_size_14</item>
-        <item name="android:textColor">@color/color_d3</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center_vertical</item>
-    </style>
-    <!--绿色按钮-->
-    <style name="btn_green_style" parent="@style/Widget.AppCompat.Button.Borderless">
-        <item name="android:textSize">@dimen/text_size_16</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_gravity">center</item>
-        <item name="android:layout_marginLeft">@dimen/x14</item>
-        <item name="android:layout_marginRight">@dimen/x14</item>
-        <item name="android:background">@drawable/shape_green_btn</item>
-    </style>
-    <!--灰色按钮-->
-    <style name="btn_gray_style" parent="@style/Widget.AppCompat.Button.Borderless">
-        <item name="android:textSize">@dimen/text_size_16</item>
-        <item name="android:textColor">@color/color_gray_1</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_marginLeft">@dimen/x14</item>
-        <item name="android:layout_marginRight">@dimen/x14</item>
-        <item name="android:background">@drawable/shape_gray_btn</item>
-    </style>
-
 
     <!-- cardView背景颜色改变-->
     <style name="card_view_style">

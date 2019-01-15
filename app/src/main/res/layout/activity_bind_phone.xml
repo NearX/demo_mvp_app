@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/select_tv"
-            style="@style/text_more_gray_style"
+            style="@style/text_item_more_style"
             android:layout_alignParentRight="true"
             android:layout_margin="@dimen/x14"
             android:text="@string/select_phone_area" />
@@ -37,7 +37,7 @@
 
         <EditText
             android:id="@+id/phone_et"
-            style="@style/edit_text_style1"
+            style="@style/edit_text_style"
             android:layout_gravity="center"
             android:hint="@string/input_phone"
             android:inputType="phone"
@@ -97,7 +97,7 @@
 
         <EditText
             android:id="@+id/again_password_et"
-            style="@style/edit_text_style1"
+            style="@style/edit_text_style"
             android:layout_gravity="center"
             android:hint="@string/input_new_password"
             android:inputType="textPassword"
@@ -107,7 +107,7 @@
 
     <Button
         android:id="@+id/submit_btn"
-        style="@style/btn_green_style"
+        style="@style/btn_normal_style"
         android:layout_width="@dimen/x140"
         android:layout_height="@dimen/y40"
         android:layout_marginTop="@dimen/y30"

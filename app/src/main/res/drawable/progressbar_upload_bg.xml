@@ -56,7 +56,7 @@
 
         <!--改用scale属性，为了右边圆角，clip没有这个功能-->
         <scale
-            android:drawable="@drawable/shape_progressbar_progress"
+            android:drawable="@drawable/progressbar_progress"
             android:scaleWidth="100%" />
 
     </item>

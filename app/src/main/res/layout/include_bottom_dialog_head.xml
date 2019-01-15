@@ -25,7 +25,7 @@
 
     <TextView
         android:id="@+id/bottom_dialog_conform"
-        style="@style/text_style_green_1"
+        style="@style/btn_gray"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"

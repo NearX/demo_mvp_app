@@ -52,6 +52,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!-- APK下载安装服务 -->
+        <service android:name=".service.ApkDownInstallService" />
         <!-- 腾讯BUGLY必须要添加的activity-->
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"

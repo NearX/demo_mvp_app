@@ -67,7 +67,7 @@
 
     <TextView
         android:id="@+id/personal_message_tv"
-        style="@style/textView_item_style"
+        style="@style/text_item_more_style"
         android:text="@string/personal_message" />
 
     <View style="@style/line_h" />
@@ -75,7 +75,7 @@
     <!--版本检测-->
     <TextView
         android:id="@+id/check_version_tv"
-        style="@style/textView_item_style"
+        style="@style/text_item_more_style"
         android:layout_marginTop="@dimen/x10"
         android:text="@string/check_version" />
 

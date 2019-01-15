@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="300dp"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/shape_dialog_bg"
     android:orientation="vertical"
@@ -60,7 +60,7 @@
 
     <Button
         android:id="@+id/positive_half_tv"
-        style="@style/btn_green"
+        style="@style/btn_normal_style"
         android:layout_marginBottom="@dimen/y0.5"
         android:layout_marginTop="@dimen/y30"
         android:text="@string/confirm"
