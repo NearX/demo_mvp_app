@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.ybkj.demo.BugClassDemo;
 import com.ybkj.demo.R;
 import com.ybkj.demo.base.BaseMvpActivity;
 import com.ybkj.demo.manager.ActivityManager;
@@ -77,7 +78,10 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements IL
 //                String password = passwordEt.getText().toString().trim();
 //                String area = areaTv.getText().toString().trim();
 //                presenter.login(area, account, password);
-                ActivityManager.gotoActivity(mContext, MainActivity.class);
+//                ActivityManager.gotoActivity(mContext, MainActivity.class);
+                BugClassDemo bugClassDemo = new BugClassDemo();
+                String bugText = bugClassDemo.bug();
+                toast("修复成功" + bugText);
                 break;
             case R.id.login_forgot_tv:
                 break;

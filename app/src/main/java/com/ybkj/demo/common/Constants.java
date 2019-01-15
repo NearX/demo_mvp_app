@@ -8,7 +8,7 @@ package com.ybkj.demo.common;
  */
 
 public class Constants {
-    public static final String BUGLY_APP_ID = "XXXXXXXX";
+    public static final String BUGLY_APP_ID = "44a53f6524";
     public static final String TOKEN_KEY = "X-Access-Auth-Token";
     public static final String PROJECT = "demo";
 

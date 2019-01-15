@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
-import com.ybkj.demo.MyApplication;
+import com.ybkj.demo.SampleApplicationLike;
 
 
 /**
@@ -49,7 +49,7 @@ public class KeyboardUtils {
         view.setFocusable(true);
         view.setFocusableInTouchMode(true);
         view.requestFocus();
-        InputMethodManager imm = (InputMethodManager) MyApplication.getInstance().getSystemService(Context
+        InputMethodManager imm = (InputMethodManager) SampleApplicationLike.getInstance().getSystemService(Context
                 .INPUT_METHOD_SERVICE);
         if (imm == null) return;
         imm.showSoftInput(view, InputMethodManager.SHOW_FORCED);
@@ -74,7 +74,7 @@ public class KeyboardUtils {
      * @param view 视图
      */
     public static void hideSoftInput(final View view) {
-        InputMethodManager imm = (InputMethodManager) MyApplication.getInstance().getSystemService(Context
+        InputMethodManager imm = (InputMethodManager) SampleApplicationLike.getInstance().getSystemService(Context
                 .INPUT_METHOD_SERVICE);
         if (imm == null) return;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -84,7 +84,7 @@ public class KeyboardUtils {
      * 切换键盘显示与否状态
      */
     public static void toggleSoftInput() {
-        InputMethodManager imm = (InputMethodManager) MyApplication.getInstance().getSystemService(Context
+        InputMethodManager imm = (InputMethodManager) SampleApplicationLike.getInstance().getSystemService(Context
                 .INPUT_METHOD_SERVICE);
         if (imm == null) return;
         imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);

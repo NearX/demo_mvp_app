@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Base64;
 
-import com.ybkj.demo.MyApplication;
+import com.ybkj.demo.SampleApplicationLike;
 import com.ybkj.demo.common.Constants;
 
 import java.io.ByteArrayInputStream;
@@ -108,7 +108,7 @@ public class PreferencesUtils extends BasePreferences {
      */
     public static void saveObject(String key, Object object) {
         if (object == null) {
-            removeKey(MyApplication.getInstance(), key);
+            removeKey(SampleApplicationLike.getInstance(), key);
             return;
         }
 
@@ -122,7 +122,7 @@ public class PreferencesUtils extends BasePreferences {
             oos = new ObjectOutputStream(baos);
             oos.writeObject(object);
             String strBase64 = new String(Base64.encode(baos.toByteArray(), Base64.DEFAULT));
-            putString(MyApplication.getInstance(), key, strBase64);
+            putString(SampleApplicationLike.getInstance(), key, strBase64);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -153,7 +153,7 @@ public class PreferencesUtils extends BasePreferences {
      */
     public static Object getObject(String key, Object defValue) {
         Object object = null;
-        String strBase64 = getString(MyApplication.getInstance(), key, "");
+        String strBase64 = getString(SampleApplicationLike.getInstance(), key, "");
         if (TextUtils.isEmpty(strBase64)) {
             return defValue;
         }
