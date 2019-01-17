@@ -4,5 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <Button
+        android:id="@+id/image_select_button"
+       style="@style/btn_normal_style"
+        android:layout_margin="@dimen/x30"
+        android:text="图片选择"/>
+
 
 </RelativeLayout>

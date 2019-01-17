@@ -1,12 +1,19 @@
 package com.ybkj.demo.module;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.Button;
 
 import com.ybkj.demo.R;
 import com.ybkj.demo.base.BaseMvpActivity;
 import com.ybkj.demo.manager.ActivityManager;
+import com.ybkj.demo.ui.dialog.PictureSelectDialog;
+import com.ybkj.demo.utils.ToastUtil;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -15,8 +22,13 @@ import butterknife.OnClick;
  */
 public class MainActivity extends BaseMvpActivity<MainPresenter> implements IMainAtView {
 
+
+    @BindView(R.id.image_select_button)
+    Button imageSelectButton;
     //点击回退的时间
     private long recodeTime = 0;
+    //图片选择弹框
+    private PictureSelectDialog pictureSelectDialog;
 
     @Override
     protected void initTitle() {
@@ -37,7 +49,15 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements IMai
 
     @Override
     protected void initView() {
+        imageSelectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (pictureSelectDialog==null)
+                    initPictureSelectDialog();
+                pictureSelectDialog.show();
 
+            }
+        });
     }
 
     @Override
@@ -80,4 +100,23 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements IMai
     }
 
 
+    private void initPictureSelectDialog(){
+        pictureSelectDialog=new PictureSelectDialog(mContext);
+        pictureSelectDialog.setCrop(false);
+        pictureSelectDialog.setOutputSize(1000,1000);
+        pictureSelectDialog.setOnSelectSuccessListener(new PictureSelectDialog.OnSelectSuccessListener() {
+            @Override
+            public void onBytesSuccess(byte[] bytes, int tag) {
+                ToastUtil.showShort("bytes.length="+bytes.length);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (pictureSelectDialog!=null)
+            pictureSelectDialog.onActivityResult(requestCode,resultCode,data);
+    }
 }
