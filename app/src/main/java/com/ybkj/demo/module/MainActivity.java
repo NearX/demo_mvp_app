@@ -1,20 +1,28 @@
 package com.ybkj.demo.module;
 
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.ybkj.demo.R;
 import com.ybkj.demo.base.BaseMvpActivity;
 import com.ybkj.demo.manager.ActivityManager;
 import com.ybkj.demo.ui.dialog.PictureSelectDialog;
+import com.ybkj.demo.ui.view.ShadowDrawable;
+import com.ybkj.demo.utils.NumberUtil;
 import com.ybkj.demo.utils.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.ybkj.demo.ui.view.ShadowDrawable.dpToPx;
 
 /**
  * - @Author:  Yi Shan Xiang
@@ -25,6 +33,8 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements IMai
 
     @BindView(R.id.image_select_button)
     Button imageSelectButton;
+    @BindView(R.id.tv_content)
+    TextView tvContent;
     //点击回退的时间
     private long recodeTime = 0;
     //图片选择弹框
@@ -49,10 +59,16 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements IMai
 
     @Override
     protected void initView() {
+
+
+        ShadowDrawable.setShadowDrawable(tvContent, Color.parseColor("#ffffffff"), dpToPx(8),
+                Color.parseColor("#0a000000"),
+                dpToPx(6), 5,  dpToPx(8));
+
         imageSelectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pictureSelectDialog==null)
+                if (pictureSelectDialog == null)
                     initPictureSelectDialog();
                 pictureSelectDialog.show();
 
@@ -88,26 +104,20 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements IMai
     }
 
 
-    @OnClick({})
-    public void onViewClicked(View view) {
-
-    }
-
-
     @Override
     protected void injectPresenter() {
         getActivityComponent().inject(this);
     }
 
 
-    private void initPictureSelectDialog(){
-        pictureSelectDialog=new PictureSelectDialog(mContext);
+    private void initPictureSelectDialog() {
+        pictureSelectDialog = new PictureSelectDialog(mContext);
         pictureSelectDialog.setCrop(false);
-        pictureSelectDialog.setOutputSize(1000,1000);
+        pictureSelectDialog.setOutputSize(1000, 1000);
         pictureSelectDialog.setOnSelectSuccessListener(new PictureSelectDialog.OnSelectSuccessListener() {
             @Override
             public void onBytesSuccess(byte[] bytes, int tag) {
-                ToastUtil.showShort("bytes.length="+bytes.length);
+                ToastUtil.showShort("bytes.length=" + bytes.length);
             }
         });
     }
@@ -116,7 +126,9 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements IMai
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (pictureSelectDialog!=null)
-            pictureSelectDialog.onActivityResult(requestCode,resultCode,data);
+        if (pictureSelectDialog != null)
+            pictureSelectDialog.onActivityResult(requestCode, resultCode, data);
     }
+
+
 }

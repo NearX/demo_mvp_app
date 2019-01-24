@@ -6,9 +6,15 @@
 
     <Button
         android:id="@+id/image_select_button"
-       style="@style/btn_normal_style"
+        style="@style/btn_normal_style"
         android:layout_margin="@dimen/x30"
-        android:text="图片选择"/>
+        android:text="图片选择" />
 
-
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y120"
+        android:layout_below="@id/image_select_button"
+        android:layout_margin="@dimen/x20"
+        android:background="@color/white" />
 </RelativeLayout>

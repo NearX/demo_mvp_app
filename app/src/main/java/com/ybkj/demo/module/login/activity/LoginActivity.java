@@ -1,5 +1,9 @@
 package com.ybkj.demo.module.login.activity;
 
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,15 +16,19 @@ import com.ybkj.demo.module.MainActivity;
 import com.ybkj.demo.module.login.presenter.LoginPresenter;
 import com.ybkj.demo.module.login.view.ILoginAtView;
 import com.ybkj.demo.ui.dialog.SelectAreaDialog;
+import com.ybkj.demo.ui.view.ClearEditText;
+import com.ybkj.demo.ui.view.MyTextView;
+import com.ybkj.demo.utils.ResourcesUtil;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements ILoginAtView {
 
     //账号
     @BindView(R.id.login_account_et)
-    EditText accountEt;
+    ClearEditText accountEt;
     //区号
     @BindView(R.id.login_area_tv)
     TextView areaTv;
@@ -33,6 +41,8 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements IL
     //忘记密码
     @BindView(R.id.login_forgot_tv)
     TextView loginForgotTv;
+    @BindView(R.id.myText)
+    MyTextView myText;
     private SelectAreaDialog selectAreaDialog;
 
     @Override
@@ -47,12 +57,36 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements IL
 
     @Override
     protected void initView() {
+        myText.setLineColor(ResourcesUtil.getColor(R.color.color_blue_1));
+        myText.setRadius(180);
+        myText.setLineHeight(10);
+        myText.setBackgroundColorStyle(ResourcesUtil.getColor(R.color.colorAccent));
+
+
         selectAreaDialog = new SelectAreaDialog(mContext);
         selectAreaDialog.setOnItemClickListener(new SelectAreaDialog.OnItemClickListener() {
             @Override
             public void onItemClick(String areaId, String areaName) {
                 areaTv.setText(areaId);
                 selectAreaDialog.dismiss();
+            }
+        });
+
+
+        accountEt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
     }

@@ -92,7 +92,39 @@ public class MyTextView extends TextView {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+    }
+
+    public void setLineColor(int color) {
+        this.mLineColor = color;
+        setTextStyle(color, mRadius, mBackgroundColor, mLineHeight);
+    }
+
+    public void setRadius(int radius) {
+        this.mRadius = radius;
+        setTextStyle(mLineColor, radius, mBackgroundColor, mLineHeight);
+    }
+
+    public void setLineHeight(int height) {
+        this.mLineHeight = height;
+        setTextStyle(mLineColor, mRadius, mBackgroundColor, mLineHeight);
+    }
+
+    public void setBackgroundColorStyle(int mBackgroundColor) {
+        this.mBackgroundColor = mBackgroundColor;
+        setTextStyle(mLineColor, mRadius, mBackgroundColor, mLineHeight);
+    }
 
 
+    /**
+     * 设置style样式
+     *
+     * @param color
+     * @param mRadius
+     * @param mBackgroundColor
+     * @param mLineHeight
+     */
+    private void setTextStyle(int color, int mRadius, int mBackgroundColor, int mLineHeight) {
+        mDrawable = createDrawable(color, mRadius, mBackgroundColor, mLineHeight);
+        setBackgroundCompat(mDrawable);
     }
 }

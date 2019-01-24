@@ -87,5 +87,33 @@ public class NumberUtil {
 
     }
 
+    /**
+     * 保留小数向前进一位 只要有值，就向前进1
+     *
+     * @param doubleValue
+     * @param accuracy
+     * @return
+     */
+    public static String doubleFormatAddDigit(double doubleValue, int accuracy) {
+        BigDecimal decimal = new BigDecimal(doubleValue);//2表示保留2位小数， BigDecimal.ROUND_UP表示第2位小数后，只要有值，就向前进1
+        decimal = decimal.setScale(2, BigDecimal.ROUND_UP);
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        numberFormat.setMinimumFractionDigits(0);//设置数值的小数部分允许的最小位数。
+        return numberFormat.format(decimal);
+    }
 
+    /**
+     * 保留小数 四舍五入
+     *
+     * @param doubleValue 数据
+     * @param accuracy    位数
+     * @return
+     */
+    public static String numberFormatDigit(double doubleValue, int accuracy) {
+        BigDecimal bigDecimal = new BigDecimal(doubleValue);
+        double result = bigDecimal.setScale(accuracy, BigDecimal.ROUND_HALF_UP).doubleValue();//先四舍五入，在截取小数的位数
+        NumberFormat numberFormat = NumberFormat.getInstance();
+        numberFormat.setMinimumFractionDigits(0);//设置数值的小数部分允许的最小位数。
+        return numberFormat.format(result);
+    }
 }
