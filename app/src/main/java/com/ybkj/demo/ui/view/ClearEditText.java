@@ -19,7 +19,7 @@ import com.ybkj.demo.R;
  * date : 2019/1/23 9:45
  * description :可清除的输入框
  */
-public class ClearEditText extends EditText
+public class ClearEditText extends android.support.v7.widget.AppCompatEditText
         implements View.OnTouchListener, View.OnFocusChangeListener, TextWatcher {
 
     private Drawable mClearIcon;

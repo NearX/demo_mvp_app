@@ -58,8 +58,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements IL
     @Override
     protected void initView() {
         myText.setLineColor(ResourcesUtil.getColor(R.color.color_blue_1));
-        myText.setRadius(180);
-        myText.setLineHeight(10);
+
         myText.setBackgroundColorStyle(ResourcesUtil.getColor(R.color.colorAccent));
 
 
@@ -72,6 +71,12 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements IL
             }
         });
 
+      accountEt.setOnTouchListener(new View.OnTouchListener() {
+          @Override
+          public boolean onTouch(View view, MotionEvent motionEvent) {
+              return false;
+          }
+      });
 
         accountEt.addTextChangedListener(new TextWatcher() {
             @Override
