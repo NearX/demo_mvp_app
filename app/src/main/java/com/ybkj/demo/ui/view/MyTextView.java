@@ -21,6 +21,12 @@ public class MyTextView extends TextView {
     private int mLineHeight; //外边框高度
     private int mRadius; //圆角
     private GradientDrawable mDrawable;
+    private int mLeftTopRadius;//左上圆角
+    private int mLeftBottomRadius;//左下角圆角
+    private int mRightTopRadius;//右上角圆角
+    private int mRightBottomRadius;//右下角圆角
+    private GradientDrawable mBackgroundNormal;
+
 
     public MyTextView(Context context) {
         super(context);
@@ -50,6 +56,10 @@ public class MyTextView extends TextView {
             mLineHeight = mTypedArray.getDimensionPixelOffset(R.styleable.myTextView_line_height, 0);
             mRadius = mTypedArray.getDimensionPixelOffset(R.styleable.myTextView_radius, 0);
 
+            mLeftTopRadius = mTypedArray.getDimensionPixelOffset(R.styleable.myTextView_corner_radius_top_left, 0);
+            mLeftBottomRadius = mTypedArray.getDimensionPixelOffset(R.styleable.myTextView_corner_radius_bottom_left, 0);
+            mRightTopRadius = mTypedArray.getDimensionPixelOffset(R.styleable.myTextView_corner_radius_top_right, 0);
+            mRightBottomRadius = mTypedArray.getDimensionPixelOffset(R.styleable.myTextView_corner_radius_bottom_right, 0);
             mDrawable = createDrawable(mLineColor, mRadius, mBackgroundColor, mLineHeight);
             setBackgroundCompat(mDrawable);
         }
@@ -99,7 +109,7 @@ public class MyTextView extends TextView {
         setTextStyle(color, mRadius, mBackgroundColor, mLineHeight);
     }
 
-    public void setRadius(int radius) {
+    public void setAllRadius(int radius) {
         this.mRadius = radius;
         setTextStyle(mLineColor, radius, mBackgroundColor, mLineHeight);
     }
@@ -126,5 +136,42 @@ public class MyTextView extends TextView {
     private void setTextStyle(int color, int mRadius, int mBackgroundColor, int mLineHeight) {
         mDrawable = createDrawable(color, mRadius, mBackgroundColor, mLineHeight);
         setBackgroundCompat(mDrawable);
+    }
+
+    /**
+     * 设置左上角圆角
+     *
+     * @param leftTopRadius
+     */
+    public void setLeftTopRadius(int leftTopRadius) {
+        this.mLeftBottomRadius = leftTopRadius;
+
+    }
+
+    /**
+     * 设置左下角圆角
+     *
+     * @param leftBottomRadius
+     */
+    public void setLeftBottomRadius(int leftBottomRadius) {
+        this.mLeftBottomRadius = leftBottomRadius;
+    }
+
+    /**
+     * 设置右上角圆角
+     *
+     * @param rightTopRadius
+     */
+    public void setRightTopRadius(int rightTopRadius) {
+        this.mRightBottomRadius = rightTopRadius;
+    }
+
+    /**
+     * 设置有下角圆角
+     *
+     * @param rightBottomRadius
+     */
+    public void setRightBottomRadius(int rightBottomRadius) {
+        this.mRightBottomRadius = rightBottomRadius;
     }
 }

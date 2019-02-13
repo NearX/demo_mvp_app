@@ -7,7 +7,12 @@
         <attr name="line_color" format="reference|color" />
         <attr name="radius" format="dimension" />
         <attr name="background_color" format="reference|color" />
-
+        <!--四周圆角度、左上、右上、左下、右下-->
+        <attr name="corner_radius" format="dimension" />
+        <attr name="corner_radius_top_left" format="dimension" />
+        <attr name="corner_radius_top_right" format="dimension" />
+        <attr name="corner_radius_bottom_left" format="dimension" />
+        <attr name="corner_radius_bottom_right" format="dimension" />
     </declare-styleable>
 
     <!-- 末行对齐方式 -->
