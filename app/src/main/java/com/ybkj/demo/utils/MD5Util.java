@@ -1,6 +1,8 @@
 package com.ybkj.demo.utils;
 
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.security.MessageDigest;
 
 /**
@@ -79,10 +81,11 @@ public class MD5Util {
     private static String getMD5Str(byte[] paramByte) {
         StringBuffer md5StrBuff = new StringBuffer();
         for (int i = 0; i < paramByte.length; i++) {
-            if (Integer.toHexString(0xFF & paramByte[i]).length() == 1)
+            if (Integer.toHexString(0xFF & paramByte[i]).length() == 1) {
                 md5StrBuff.append("0").append(Integer.toHexString(0xFF & paramByte[i]));
-            else
+            } else {
                 md5StrBuff.append(Integer.toHexString(0xFF & paramByte[i]));
+            }
 
         }
         return md5StrBuff.toString();
@@ -112,6 +115,44 @@ public class MD5Util {
         }
 
         return resultStr;
+    }
+
+
+    /**
+     * 获取文件信息MD5值
+     *
+     * @param apkFile
+     * @return
+     */
+    public static String getSignMd5Str(File apkFile) {
+        try {
+            // 获取一个文件的特征信息，签名信息。
+            File file = new File(apkFile.getPath());
+            // md5
+            MessageDigest digest = MessageDigest.getInstance("md5");
+            FileInputStream fis = new FileInputStream(file);
+            byte[] buffer = new byte[1024];
+            int len = -1;
+            while ((len = fis.read(buffer)) != -1) {
+                digest.update(buffer, 0, len);
+            }
+            byte[] result = digest.digest();
+            StringBuffer sb = new StringBuffer();
+            for (byte b : result) {
+                // 与运算
+                int number = b & 0xff;// 加盐
+                String str = Integer.toHexString(number);
+                // System.out.println(str);
+                if (str.length() == 1) {
+                    sb.append("0");
+                }
+                sb.append(str);
+            }
+            return sb.toString();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
     }
 
 }

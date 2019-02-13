@@ -56,7 +56,7 @@ public class CheckVersionActivity extends BaseMvpActivity<CheckVersionPresenter>
     }
 
     @Override
-    public void LoadData(VersionRes.AppVersionBean res) {
+    public void loadData(VersionRes.AppVersionBean res) {
         if (res != null) {
 
             try {

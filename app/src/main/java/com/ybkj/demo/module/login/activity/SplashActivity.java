@@ -2,10 +2,12 @@ package com.ybkj.demo.module.login.activity;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.content.Intent;
 
 import com.tbruyelle.rxpermissions2.RxPermissions;
 import com.ybkj.demo.R;
 import com.ybkj.demo.base.BaseMvpActivity;
+import com.ybkj.demo.bean.ProgressMessage;
 import com.ybkj.demo.bean.response.LoginRes;
 import com.ybkj.demo.bean.response.VersionRes;
 import com.ybkj.demo.manager.ActivityManager;
@@ -13,10 +15,20 @@ import com.ybkj.demo.manager.UserDataManager;
 import com.ybkj.demo.module.MainActivity;
 import com.ybkj.demo.module.mine.presenter.CheckVersionPresenter;
 import com.ybkj.demo.module.mine.view.CheckVersionView;
+import com.ybkj.demo.service.ApkDownInstallService;
 import com.ybkj.demo.ui.dialog.TipDialog;
+import com.ybkj.demo.ui.dialog.UpdateProgressDialog;
 import com.ybkj.demo.ui.dialog.VersionDialog;
 import com.ybkj.demo.utils.AppUpdateVersionCheckUtil;
+import com.ybkj.demo.utils.LogUtil;
 import com.ybkj.demo.utils.RxPermissionUtils;
+import com.ybkj.demo.utils.StringUtil;
+import com.ybkj.demo.utils.SystemUtil;
+import com.ybkj.demo.utils.ToastUtil;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.concurrent.TimeUnit;
 
@@ -40,6 +52,9 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
 
     private boolean isLogin = false;
 
+    private UpdateProgressDialog progressDialog;//更新下载进度dialog
+    private String newestVersion;
+    private VersionDialog updateDialog;//是否更新询问弹出框
 
     @Override
     protected void injectPresenter() {
@@ -58,13 +73,13 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
 
     @Override
     protected void initView() {
-
+        EventBus.getDefault().register(this);
+        if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
+            finish();
+            return;
+        }
     }
 
-    @Override
-    public boolean isImmersiveStatusBar() {
-        return true;
-    }
 
     @Override
     protected void initData() {
@@ -78,7 +93,7 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
     public void onError(String errorMsg) {
         super.onError(errorMsg);
         timeFinish = true;
-        goMainActivity();
+        goMianActivity();
     }
 
     /**
@@ -92,10 +107,10 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
                             if (aBoolean) {
                                 //true表示获取权限成功（android6.0以下默认为true）
                                 permissionFinish = true;
-                                goMainActivity();
+                                goMianActivity();
                             } else {
                                 TipDialog tipDialog = new TipDialog(mContext);
-                                tipDialog.setMessageText("为保障APP的正常运行，需要进行权限授予");
+                                tipDialog.setTittleText("为保障APP的正常运行，需要进行权限授予");
                                 tipDialog.setConfirmButtonText("授予权限");
                                 tipDialog.setCancelButtonText("退出APP");
                                 tipDialog.setOnCancelButtonClickListener((dialog, view) -> {
@@ -117,16 +132,16 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
      * 跳转主页面
      * 根据token判断是否需要用户登录
      */
-    private void goMainActivity() {
+    private void goMianActivity() {
         if (timeFinish && permissionFinish && !isUpdate) {
             LoginRes token = UserDataManager.getLoginInfo();
             isLogin = true;
-            if (token != null) {
-                ActivityManager.gotoActivity(mContext, MainActivity.class);
-            } else {
-                ActivityManager.gotoActivity(mContext, LoginActivity.class);
-
-            }
+//            if (token != null) {
+            ActivityManager.gotoActivity(mContext, MainActivity.class);
+//            } else {
+//                ActivityManager.gotoActivity(mContext, LoginActivity.class);
+//
+//            }
             finish();
         }
     }
@@ -139,72 +154,87 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
             subscribe.dispose();
             subscribe = null;
         }
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
-    public void LoadData(VersionRes.AppVersionBean appUpdateRes) {
-        if (appUpdateRes == null) { //更新信息为空
+    public void loadData(VersionRes.AppVersionBean appUpdateRes) {
+        if (appUpdateRes == null) {
             isUpdate = false;
-            goMainActivity();
+            goMianActivity();
             return;
         }
-        String newestVersion = appUpdateRes.getVersionNumber(); //获取平台最新版本号
+        String oldVersion = SystemUtil.getAppVersionName(mContext);
+        newestVersion = appUpdateRes.getVersionNumber();
+        //最新强制更新版本号
+        String forceUpdateVersion = appUpdateRes.getForceUpdatingVersionNumber();
         boolean canUpdate = false;
+        boolean canForceUpdate = false;//是否低于最新的强制更新版本号
         try {
             canUpdate = AppUpdateVersionCheckUtil.compareVersion(newestVersion);
+            if (StringUtil.isNotNull(forceUpdateVersion)) {
+                canForceUpdate = AppUpdateVersionCheckUtil.compareVersion(forceUpdateVersion);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         if (!canUpdate) {
             timeFinish = true;
-            toast("当前已是最新版本");
-            goMainActivity();
+            goMianActivity();
             return;
         }
-        VersionDialog updateDialog = new VersionDialog(mContext, appUpdateRes.getVersionNumber(), appUpdateRes.getUpdateExplain());
-
-        if (appUpdateRes.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
+        updateDialog = new VersionDialog(mContext, appUpdateRes.getVersionNumber(), appUpdateRes.getUpdateExplain());
+        updateDialog.setConfirmButtonText("立即更新");
+        if (appUpdateRes.getType() == 2 || canForceUpdate) {// 1：可用更新，2：强制更新
             updateDialog.setCancelButtonText("退出应用");
         } else {
-            updateDialog.setCancelButtonText("取消更新");
+            updateDialog.setCancelButtonText("暂不更新");
         }
         isUpdate = true;
+        boolean finalCanForceUpdate = canForceUpdate;
         updateDialog.setOnCancelButtonClickListener((dialog, view) -> {
-            if (appUpdateRes.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
+            if (appUpdateRes.getType() == 2 || finalCanForceUpdate) {// 1：可用更新，2：强制更新
                 ActivityManager.exit();
             } else {
                 updateDialog.dismiss();
                 timeFinish = true;
                 isUpdate = false;
-                goMainActivity();
+                goMianActivity();
             }
         });
         updateDialog.setOnConfirmButtonClickListener((dialog, view) -> {
-            AppUpdateVersionCheckUtil.getInstance().setOnDownLoadListener(new AppUpdateVersionCheckUtil
-                    .OnDownLoadListener() {
-                @Override
-                protected void onSuccess() {
+            RxPermissionUtils.getInstance(mContext).setPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_PHONE_STATE).
+                    setOnPermissionCallBack(new RxPermissionUtils.OnPermissionListener() {
 
-                }
+                        @Override
+                        public void onPermissionGranted(String name) {
+                            LogUtil.i("onPermissionGranted name=" + name);
+                        }
 
-                @Override
-                protected void onProgress(int progrss) {
+                        @Override
+                        protected void onPermissionException(Throwable e) {
+                            super.onPermissionException(e);
+                            ToastUtil.showShort("权限申请失败" + e.getMessage());
+                        }
 
-                }
-
-                @Override
-                protected void onBegin() {
-                    if (appUpdateRes.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
-                        toast("应用正在下载，请稍后");
-                    } else {
-                        updateDialog.dismiss();
-                        toast("应用转入后台下载");
-                        timeFinish = true;
-                        isUpdate = false;
-                        goMainActivity();
-                    }
-                }
-            }).downLoadApk(mContext, appUpdateRes.getAppUrl());
+                        @Override
+                        protected void onAllPermissionFinish() {
+                            Intent intent = new Intent(mContext, ApkDownInstallService.class);
+                            intent.putExtra("intent_md5", appUpdateRes.getUpdateKey());
+                            intent.putExtra("apkUrl", appUpdateRes.getAppUrl());
+                            intent.putExtra("tag", "splashUpdate");
+                            startService(intent);
+                            if (appUpdateRes.getType() == 2 || finalCanForceUpdate) {// 1：可用更新，2：强制更新
+                                toast("应用正在下载，请稍后");
+                                updateDialog.dismiss();
+                            } else {
+                                updateDialog.dismiss();
+                                toast("开始下载");
+                            }
+                        }
+                    }).start();
         });
 
         updateDialog.show();
@@ -217,9 +247,45 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
 
             if (integer == 0 && isLogin == false) {
                 timeFinish = true;
-                goMainActivity();
+                goMianActivity();
             }
         });
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void receiveMsg(ProgressMessage event) {
+        String tag = event.getTag();
+        String message = event.getMsg();
+        int progress = event.getProgress();
+        if (!ProgressMessage.SPLASH_UPDATE.equals(tag)) {
+            return;
+        }
+        switch (message) {
+            case ProgressMessage.SHOW:
+                if (progressDialog == null) {
+                    progressDialog = new UpdateProgressDialog(mContext, newestVersion);
+                }
+                progressDialog.show();
+                break;
+            case ProgressMessage.UPDATE:
+                if (progressDialog == null) {
+                    progressDialog = new UpdateProgressDialog(mContext, newestVersion);
+                    progressDialog.show();
+                }
+                progressDialog.updateProgress(progress);
+                break;
+            case ProgressMessage.COMPLETE:
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
+                if (updateDialog != null) {
+                    updateDialog.show();
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
 

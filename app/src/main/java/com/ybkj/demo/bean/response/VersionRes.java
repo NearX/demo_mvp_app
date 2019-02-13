@@ -32,6 +32,26 @@ public class VersionRes extends BaseResponse {
         private int status;
         //添加时间
         private long addTime;
+        //最近的强制更新的版本
+        private String forceUpdatingVersionNumber;
+        //md5
+        private String updateKey;
+
+        public String getUpdateKey() {
+            return updateKey;
+        }
+
+        public void setUpdateKey(String updateKey) {
+            this.updateKey = updateKey;
+        }
+
+        public String getForceUpdatingVersionNumber() {
+            return forceUpdatingVersionNumber;
+        }
+
+        public void setForceUpdatingVersionNumber(String forceUpdatingVersionNumber) {
+            this.forceUpdatingVersionNumber = forceUpdatingVersionNumber;
+        }
 
         public int getId() {
             return id;

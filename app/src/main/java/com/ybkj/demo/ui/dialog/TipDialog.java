@@ -68,7 +68,7 @@ public class TipDialog extends Dialog {
      *
      * @param messageStr
      */
-    public void setMessageText(String messageStr) {
+    public void setTittleText(String messageStr) {
         this.messageStr = messageStr;
     }
 

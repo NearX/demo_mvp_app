@@ -30,7 +30,7 @@ public class CheckVersionPresenter extends BaseRxPresenter<CheckVersionView> {
     public void onSuccess(Object response, int tag) {
         VersionRes res = (VersionRes) response;
         if (res != null) {
-            mView.LoadData(res.getAppVersion());
+            mView.loadData(res.getAppVersion());
         }
     }
 
