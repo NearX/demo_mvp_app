@@ -10,6 +10,7 @@ import com.ybkj.demo.base.BaseMvpActivity;
 import com.ybkj.demo.bean.ProgressMessage;
 import com.ybkj.demo.bean.response.LoginRes;
 import com.ybkj.demo.bean.response.VersionRes;
+import com.ybkj.demo.common.Constants;
 import com.ybkj.demo.manager.ActivityManager;
 import com.ybkj.demo.manager.UserDataManager;
 import com.ybkj.demo.module.MainActivity;
@@ -186,7 +187,7 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
         }
         updateDialog = new VersionDialog(mContext, appUpdateRes.getVersionNumber(), appUpdateRes.getUpdateExplain());
         updateDialog.setConfirmButtonText("立即更新");
-        if (appUpdateRes.getType() == 2 || canForceUpdate) {// 1：可用更新，2：强制更新
+        if (appUpdateRes.getType() == Constants.APK_VERSION_UPDATE_FORCE || canForceUpdate) {
             updateDialog.setCancelButtonText("退出应用");
         } else {
             updateDialog.setCancelButtonText("暂不更新");
@@ -194,7 +195,7 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
         isUpdate = true;
         boolean finalCanForceUpdate = canForceUpdate;
         updateDialog.setOnCancelButtonClickListener((dialog, view) -> {
-            if (appUpdateRes.getType() == 2 || finalCanForceUpdate) {// 1：可用更新，2：强制更新
+            if (appUpdateRes.getType() == Constants.APK_VERSION_UPDATE_FORCE || finalCanForceUpdate) {
                 ActivityManager.exit();
             } else {
                 updateDialog.dismiss();
@@ -222,11 +223,11 @@ public class SplashActivity extends BaseMvpActivity<CheckVersionPresenter> imple
                         @Override
                         protected void onAllPermissionFinish() {
                             Intent intent = new Intent(mContext, ApkDownInstallService.class);
-                            intent.putExtra("intent_md5", appUpdateRes.getUpdateKey());
-                            intent.putExtra("apkUrl", appUpdateRes.getAppUrl());
-                            intent.putExtra("tag", "splashUpdate");
+                            intent.putExtra(ProgressMessage.UPDATE_MD5, appUpdateRes.getUpdateKey());
+                            intent.putExtra(ProgressMessage.UPDATE_URL, appUpdateRes.getAppUrl());
+                            intent.putExtra(ProgressMessage.UPDATE_TAG, ProgressMessage.SPLASH_UPDATE);
                             startService(intent);
-                            if (appUpdateRes.getType() == 2 || finalCanForceUpdate) {// 1：可用更新，2：强制更新
+                            if (appUpdateRes.getType() == Constants.APK_VERSION_UPDATE_FORCE || finalCanForceUpdate) {
                                 toast("应用正在下载，请稍后");
                                 updateDialog.dismiss();
                             } else {

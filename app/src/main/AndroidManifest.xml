@@ -76,7 +76,7 @@
             android:name=".module.mine.ModifyAccountActivity"
             android:label="修改账号" />
 
-
+        <service android:name=".service.ApkDownInstallService" />/
     </application>
 
 </manifest>

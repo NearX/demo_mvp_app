@@ -25,7 +25,6 @@ import java.util.List;
  *
  */
 public class AppUpdateVersionCheckUtil {
-    public static int APK_VERSION_UPDATE_FORCE = 2; // 更新更新类型，1：可用更新，2：强制更新
     private OnDownLoadListener listener;
 
     private AppUpdateVersionCheckUtil() {

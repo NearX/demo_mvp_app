@@ -62,9 +62,9 @@ public class ApkDownInstallService extends IntentService {
      */
     @Override
     protected void onHandleIntent(Intent intent) {
-        urlStr = intent.getStringExtra("apkUrl");
-        md5Str = intent.getStringExtra("intent_md5");
-        eventTag = intent.getStringExtra("tag");
+        urlStr = intent.getStringExtra(ProgressMessage.UPDATE_URL);
+        md5Str = intent.getStringExtra(ProgressMessage.UPDATE_MD5);
+        eventTag = intent.getStringExtra(ProgressMessage.UPDATE_TAG);
         EventBus.getDefault().post(new ProgressMessage(eventTag, ProgressMessage.SHOW, 0));
         if (SHOW_NOTIFY) {
             //初始化通知，用于显示下载进度

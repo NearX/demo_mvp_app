@@ -25,6 +25,9 @@ public class Constants {
     //连接超时时间
     public static final int connectionTime = 15;
 
+    public static int APK_VERSION_UPDATE_FORCE = 2; // 更新更新类型，1：可用更新，2：强制更新
+
+
     //默认每页加载条目数
     public static final int PAGE_NUM = 20;
 
@@ -41,4 +44,6 @@ public class Constants {
 
 
     public static final String APPEALID = "appealId";
+
+
 }

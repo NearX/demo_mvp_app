@@ -12,6 +12,10 @@ public class ProgressMessage {
     public static final String UPDATE = "update"; //更新
     public static final String COMPLETE = "complete";//完成
 
+    public static final String UPDATE_MD5 = "intent_md5";
+    public static final String UPDATE_URL = "apkUrl";
+    public static final String UPDATE_TAG = "tag";
+
 
     private String msg;//消息内容
     private String tag; //消息类型
