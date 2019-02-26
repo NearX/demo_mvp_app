@@ -14,7 +14,7 @@ public class Constants {
 
     public static final String PORT = "app/";
     //    public static final String DEFAULT_BASE_URL = "http://192.168.4.103:18083/" + PORT;
-    public static final String DEFAULT_BASE_URL = "http://192.168.4.103:18083";
+    public static final String DEFAULT_BASE_URL = "http://192.168.4.103:18082";
 
     //intent请求公共key
     public static final String INTENT_PARAMETER_1 = "intent_parameter_1";

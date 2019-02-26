@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.ybkj.demo.R;
 import com.ybkj.demo.base.BaseMvpActivity;
 import com.ybkj.demo.bean.response.VersionRes;
+import com.ybkj.demo.common.Constants;
 import com.ybkj.demo.manager.ActivityManager;
 import com.ybkj.demo.module.mine.presenter.CheckVersionPresenter;
 import com.ybkj.demo.module.mine.view.CheckVersionView;
@@ -77,13 +78,13 @@ public class CheckVersionActivity extends BaseMvpActivity<CheckVersionPresenter>
             updateContentTv.setText(res.getUpdateExplain());
             VersionDialog updateDialog = new VersionDialog(mContext, res.getVersionNumber(), res.getUpdateExplain());
 
-            if (res.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
+            if (res.getType() == Constants.APK_VERSION_UPDATE_FORCE) {
                 updateDialog.setCancelButtonText("退出应用");
             } else {
                 updateDialog.setCancelButtonText("取消更新");
             }
             updateDialog.setOnCancelButtonClickListener((dialog, view) -> {
-                if (res.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
+                if (res.getType() == Constants.APK_VERSION_UPDATE_FORCE) {
                     ActivityManager.exit();
                 } else {
                     updateDialog.dismiss();
@@ -105,7 +106,7 @@ public class CheckVersionActivity extends BaseMvpActivity<CheckVersionPresenter>
 
                     @Override
                     protected void onBegin() {
-                        if (res.getType() == AppUpdateVersionCheckUtil.APK_VERSION_UPDATE_FORCE) {
+                        if (res.getType() == Constants.APK_VERSION_UPDATE_FORCE) {
                             toast("应用正在下载，请稍后");
                         } else {
                             updateDialog.dismiss();
