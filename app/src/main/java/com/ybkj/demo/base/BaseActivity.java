@@ -61,6 +61,7 @@ public abstract class BaseActivity extends RxAppCompatActivity implements View.O
         setContentView(getLayoutId());
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        ActivityManager.getInstance().addActivity(this);
         if (isImmersiveStatusBar())
             SystemManager.setStatusBar(this, ResourcesUtil.getColor(immersiveStatusBarColor()));
 

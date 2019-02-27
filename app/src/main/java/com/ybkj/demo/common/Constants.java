@@ -27,9 +27,13 @@ public class Constants {
 
     public static int APK_VERSION_UPDATE_FORCE = 2; // 更新更新类型，1：可用更新，2：强制更新
 
-
     //默认每页加载条目数
     public static final int PAGE_NUM = 20;
+
+
+    public static final String ALIBABA_APP_KEY = "256";
+    public static final String ALIBABA_APP_SECRET = "ad5";
+    public static final String ALIBABA_APP_RSASECRET = "KTY";
 
     //请求标记码
     public static final int REQUEST_CODE_1 = 101;

@@ -1,10 +1,7 @@
 package com.ybkj.demo.module;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -13,14 +10,12 @@ import android.widget.TextView;
 import com.ybkj.demo.R;
 import com.ybkj.demo.base.BaseMvpActivity;
 import com.ybkj.demo.manager.ActivityManager;
+import com.ybkj.demo.module.changeurl.ChangeUrlActivity;
 import com.ybkj.demo.ui.dialog.PictureSelectDialog;
 import com.ybkj.demo.ui.view.ShadowDrawable;
-import com.ybkj.demo.utils.NumberUtil;
 import com.ybkj.demo.utils.ToastUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 import static com.ybkj.demo.ui.view.ShadowDrawable.dpToPx;
 
@@ -39,6 +34,8 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements IMai
     private long recodeTime = 0;
     //图片选择弹框
     private PictureSelectDialog pictureSelectDialog;
+//    @Inject
+//    public Retrofit retrofit;
 
     @Override
     protected void initTitle() {
@@ -63,14 +60,16 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements IMai
 
         ShadowDrawable.setShadowDrawable(tvContent, Color.parseColor("#ffffffff"), dpToPx(8),
                 Color.parseColor("#0a000000"),
-                dpToPx(6), 5,  dpToPx(8));
+                dpToPx(6), 5, dpToPx(8));
 
         imageSelectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (pictureSelectDialog == null)
-                    initPictureSelectDialog();
-                pictureSelectDialog.show();
+//                if (pictureSelectDialog == null) {
+//                    initPictureSelectDialog();
+//                }
+//                pictureSelectDialog.show();
+                ActivityManager.gotoActivity(mContext, ChangeUrlActivity.class);
 
             }
         });
@@ -126,8 +125,9 @@ public class MainActivity extends BaseMvpActivity<MainPresenter> implements IMai
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (pictureSelectDialog != null)
+        if (pictureSelectDialog != null) {
             pictureSelectDialog.onActivityResult(requestCode, resultCode, data);
+        }
     }
 
 

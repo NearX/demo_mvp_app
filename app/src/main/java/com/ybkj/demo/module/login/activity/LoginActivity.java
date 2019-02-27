@@ -1,6 +1,5 @@
 package com.ybkj.demo.module.login.activity;
 
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.MotionEvent;
@@ -21,7 +20,6 @@ import com.ybkj.demo.ui.view.MyTextView;
 import com.ybkj.demo.utils.ResourcesUtil;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements ILoginAtView {
@@ -44,6 +42,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements IL
     @BindView(R.id.myText)
     MyTextView myText;
     private SelectAreaDialog selectAreaDialog;
+
 
     @Override
     protected void initTitle() {
@@ -109,7 +108,7 @@ public class LoginActivity extends BaseMvpActivity<LoginPresenter> implements IL
      * 登录业务
      */
     @OnClick({R.id.login_btn, R.id.login_forgot_tv, R.id.login_area_tv})
-    public void onClick(View view) {
+    public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.login_btn:
                 String account = accountEt.getText().toString().trim();

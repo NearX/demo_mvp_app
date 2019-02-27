@@ -9,7 +9,6 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Base64;
 
-import com.ybkj.demo.SampleApplicationLike;
 import com.ybkj.demo.common.Constants;
 
 import java.io.ByteArrayInputStream;
@@ -124,7 +123,7 @@ public class SPHelper {
 
     private SharedPreferences getConfig() {
         if (mConfig == null) {
-            mConfig = SampleApplicationLike.getInstance().getSharedPreferences(PRE_NAME, Context.MODE_PRIVATE);
+            mConfig = ResourcesUtil.getContext().getSharedPreferences(PRE_NAME, Context.MODE_PRIVATE);
         }
         return mConfig;
     }

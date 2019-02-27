@@ -5,8 +5,6 @@ import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.util.Log;
 
-import com.ybkj.demo.SampleApplicationLike;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -32,7 +30,7 @@ public class FileUtil {
      * 获取上下文
      */
     public static Context getContext() {
-        return SampleApplicationLike.getInstance();
+        return ResourcesUtil.getContext();
     }
 
     public static String getFileNameFromUrl(String url) {

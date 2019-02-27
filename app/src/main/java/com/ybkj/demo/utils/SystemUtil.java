@@ -14,8 +14,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.webkit.CookieSyncManager;
 
-import com.ybkj.demo.SampleApplicationLike;
-
 
 /**
  * author：rongkui.xiao --2018/6/12
@@ -133,9 +131,9 @@ public class SystemUtil {
      * @return px status bar height
      */
     public static int getStatusBarHeight() {
-        int resourceId = SampleApplicationLike.getInstance().getResources().getIdentifier("status_bar_height", "dimen",
+        int resourceId = ResourcesUtil.getContext().getResources().getIdentifier("status_bar_height", "dimen",
                 "android");
-        return resourceId > 0 ? SampleApplicationLike.getInstance().getResources().getDimensionPixelSize(resourceId) : 0;
+        return resourceId > 0 ? ResourcesUtil.getContext().getResources().getDimensionPixelSize(resourceId) : 0;
     }
 
     /**

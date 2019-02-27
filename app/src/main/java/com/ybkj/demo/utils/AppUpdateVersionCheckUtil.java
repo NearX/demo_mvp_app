@@ -14,7 +14,6 @@ import android.support.v4.content.FileProvider;
 import android.text.TextUtils;
 
 import com.ybkj.demo.BuildConfig;
-import com.ybkj.demo.SampleApplicationLike;
 import com.ybkj.demo.service.ApkDownInstallService;
 
 import java.io.File;
@@ -131,8 +130,8 @@ public class AppUpdateVersionCheckUtil {
      */
     public static String getVersion() {
         try {
-            PackageManager manager = SampleApplicationLike.getInstance().getPackageManager();
-            PackageInfo info = manager.getPackageInfo(SampleApplicationLike.getInstance().getPackageName(), 0);
+            PackageManager manager = ResourcesUtil.getContext().getPackageManager();
+            PackageInfo info = manager.getPackageInfo(ResourcesUtil.getContext().getPackageName(), 0);
             String version = info.versionName;
             return version;
         } catch (Exception e) {

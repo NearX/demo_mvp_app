@@ -6,9 +6,12 @@ import android.text.TextUtils;
 import com.ybkj.demo.BuildConfig;
 import com.ybkj.demo.common.Constants;
 import com.ybkj.demo.manager.UserDataManager;
+import com.ybkj.demo.module.changeurl.ChangeUrlActivity;
 import com.ybkj.demo.net.api.ApiService;
 import com.ybkj.demo.net.api.BaseNetFunction;
 import com.ybkj.demo.utils.LogUtil;
+import com.ybkj.demo.utils.SPHelper;
+import com.ybkj.demo.utils.StringUtil;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -81,6 +84,10 @@ public class HttpModule {
     @Provides
     @Singleton
     Retrofit provideRetrofit(Retrofit.Builder builder, OkHttpClient client) {
+        String url = SPHelper.getInstance().getString(ChangeUrlActivity.CHANGE_URL_KEY);
+        if (StringUtil.isNotNull(url)) {
+            return createRetrofit(builder, client, url);
+        }
         return createRetrofit(builder, client, Constants.DEFAULT_BASE_URL);
     }
 

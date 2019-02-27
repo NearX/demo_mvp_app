@@ -23,7 +23,6 @@ import android.view.inputmethod.InputMethodManager;
 
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
 import com.ybkj.demo.R;
-import com.ybkj.demo.SampleApplicationLike;
 import com.ybkj.demo.utils.LogUtil;
 import com.ybkj.demo.utils.ResourcesUtil;
 
@@ -128,9 +127,9 @@ public class SystemManager {
      * @return px status bar height
      */
     public static int getStatusBarHeight() {
-        int resourceId = SampleApplicationLike.getInstance().getResources().getIdentifier("status_bar_height", "dimen",
+        int resourceId = ResourcesUtil.getContext().getResources().getIdentifier("status_bar_height", "dimen",
                 "android");
-        return resourceId > 0 ? SampleApplicationLike.getInstance().getResources().getDimensionPixelSize(resourceId) : 0;
+        return resourceId > 0 ? ResourcesUtil.getContext().getResources().getDimensionPixelSize(resourceId) : 0;
     }
 
 

@@ -7,7 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-import com.ybkj.demo.SampleApplicationLike;
+import com.ybkj.demo.MyApplication;
 
 
 /**
@@ -129,7 +129,7 @@ public class ResourcesUtil {
      * @return the mContext
      */
     public static Context getContext() {
-        return SampleApplicationLike.getInstance();
+        return MyApplication.getInstance();
     }
 
     /**
@@ -139,7 +139,7 @@ public class ResourcesUtil {
      * @return the int
      */
     public static int sp2px(float spValue) {
-        float fontScale = SampleApplicationLike.getInstance().getResources().getDisplayMetrics()
+        float fontScale = getContext().getResources().getDisplayMetrics()
                 .scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
